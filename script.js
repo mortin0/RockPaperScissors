@@ -1,4 +1,5 @@
-game();
+let container = document.querySelector('#container');
+container.addEventListener('click', game);
 
 function getComputerChoice() {
     let result;
@@ -40,16 +41,34 @@ function game()
     let realPlayerSelection;
     let winner;
 
-    while(i < 5)
-    {
-        realComputerSelection = getComputerChoice();
-        realPlayerSelection = prompt("Let's play Rock, Paper, Scissors!");
-        
-        //Make right string format
-        realPlayerSelection = realPlayerSelection.charAt(0).toUpperCase() + realPlayerSelection.slice(1).toLowerCase();
+
+
+    realComputerSelection = getComputerChoice();
+
+    let target = event.target;
+
+    switch(target.id) {
+        case 'Rock':
+            realPlayerSelection = 'Rock';
+            break;
+
+        case 'Paper':
+            realPlayerSelection = 'Paper';
+            break;
+
+        case 'Scissors':
+            realPlayerSelection = 'Scissors';
+            break;
+        }
 
         winner = playRound(realPlayerSelection, realComputerSelection);
         if(winner != 'Draw' && winner != 'This input is not allowed!') i++;
         console.log(winner);
-    }
+    
+    // realPlayerSelection = prompt("Let's play Rock, Paper, Scissors!");
+        
+    // //Make right string format
+    // realPlayerSelection = realPlayerSelection.charAt(0).toUpperCase() + realPlayerSelection.slice(1).toLowerCase();
+
+
 }
